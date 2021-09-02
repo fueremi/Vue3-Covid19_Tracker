@@ -37,10 +37,17 @@
 export default {
   name: "DataBoxes",
   props: ["stats"],
-  methods: {
-    numberWithCommas(x) {
+  setup() {
+    const numberWithCommas = (x) => {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    },
+    };
+
+    return { numberWithCommas };
   },
+  // methods: {
+  //   numberWithCommas(x) {
+  //     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  //   },
+  // },
 };
 </script>

@@ -20,17 +20,32 @@ import { ref } from "vue";
 export default {
   name: "CountrySelect",
   props: ["countries"],
-  data() {
+  setup({ countries }, { emit }) {
+    const selected = ref(0);
+
+    const onChange = () => {
+      const country = countries.find((item) => item.ID === selected.value);
+
+      emit("get-country", country);
+    };
+
     return {
-      selected: 0,
+      selected,
+      onChange,
     };
   },
-  methods: {
-    onChange() {
-      const country = this.countries.find((item) => item.ID === this.selected);
 
-      this.$emit("get-country", country);
-    },
-  },
+  // data() {
+  //   return {
+  //     selected: 0,
+  //   };
+  // },
+  // methods: {
+  //   onChange() {
+  //     const country = this.countries.find((item) => item.ID === this.selected);
+
+  //     this.$emit("get-country", country);
+  //   },
+  // },
 };
 </script>
